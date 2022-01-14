@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './Slider.css';
 import dataSlider from './dataSlider';
+import BtnSlider from './BtnSlider';
 
 
 
@@ -10,17 +11,28 @@ const Slider = () => {
         inProgress: false
     })
 
-    return (<div className='container-slider'>
+    const nextSlide = () => {
+        console.log("NEXT");
+    }
+
+    const prevSlide = () => {
+        console.log("PREV");
+    }
+    return (
+    <div className='container-slider'>
        {dataSlider.map((obj, index) => {
-           return (
-               <div
-               key={obj.id}
-               className={slideAnim.index === index + 1 ? "slide active-anim": "slide"}
-               >
-                   <img src={process.env.PUBLIC_URL + `/Imgs/img${index + 1}.jpg`} alt="" />
-               </div>
-           )
-       })}
+                return (
+                    <div
+                    key={obj.id}
+                    className={slideAnim.index === index + 1 ? "slide active-anim" : "slide"}
+                    >
+                        <img src={process.env.PUBLIC_URL + `/Imgs/img${index + 1}.jpg`} alt="" />
+                    </div>
+                )
+            })}
+            <BtnSlider moveSlide={nextSlide} direction={"next"}/>
+            <BtnSlider moveSlide={prevSlide} direction={"prev"}/>
+
     </div>);
 }
 
